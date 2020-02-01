@@ -1,0 +1,19 @@
+using System;
+					
+public class Program
+{
+	public static void Main()
+	{
+               static int GetPow(int baseNum, int PowNum)
+
+               int result=1;
+for(int i=0;i< powNum;i++)
+{ 
+result=result*baseNum;
+}
+
+
+		Console.WriteLine("Hello World");
+	}
+    return result;
+}
