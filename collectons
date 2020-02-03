@@ -1,0 +1,33 @@
+using System.Collections ;
+namespace CollectionProject
+
+{
+    class Collection
+	{
+	 static void Main(string[]args)
+    {
+     ArrayList al=new ArrayList(2);
+    Console.WriteLine(al.Capacity);
+    al.Add(111); al.Add(112);
+
+	int[]arr=new int[10];
+	Array.Resize(ref arr,15);
+	}
+    class  HashCollection
+    {
+    static void Main()
+    {
+      Hashtable ht=new Hashtable();
+      ht.Add("id",1010);
+      ht.Add("name",shweta);
+      ht.Add("age",21);
+      Console.WriteLine(ht["name "]);
+
+     foreach (object key in ht.Keys)
+       Console.WriteLine(key);
+     Console.ReadLine();
+    }
+    }
+   }
+}
+
