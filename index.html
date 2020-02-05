@@ -1,0 +1,69 @@
+ <html>
+ <title> Ajax progress  bar and file uploads </title>
+ <meta name ="viewport" content="width=device-width,initial-scale=1.0">
+
+ <style>
+     .progress-bar {
+         height: 35px;
+         width: 250px;  
+         border: 5px solid darkblue;
+     }
+     .progress-bar-fill{
+         height: 100%;
+         width: 0%;
+         background: lightgreen;
+         display: flex;
+         align-items:center;
+         transition: width 0.25s;
+     }
+     .progress-bar-text {
+         margin-left:10px;
+         font-weight:bold;
+     }
+          
+     
+ </style>
+<body>
+    <h1> Ajax file upload and progress bar</h1>
+    <form class="form" id="uploadForm">
+         <input type="file" name="inpFile" id="inpFile"><br>
+         <input class= "button" type= "submit" value="Upload">
+    </form>
+     
+     <div class="progress-bar" id="progressBar">
+          <div class="progress-bar-fill">
+              <span class="progress-bar-text"> 0% </span>
+          </div>
+     </div>   
+     
+     <script>
+         const uploadForm= document.getElementById("uploadForm");
+         const inpFile= document.getElementById("inpFile"); 
+         const progressBarFill= document.querySelector("#progressBar > .progress-bar-fill");
+         const progressBarText= ProgressBarFill.querySelector(".progress-bar-text");
+         
+         uploadForm.addEventListener("submit", uploadFile);
+
+         function uploadFile (e) {
+             e.preventDefault();
+
+             const xhr= new XMLHttpRequest();
+
+             xhr.open("POST","upload.php");
+             xhr.upload.addEventListener("progress", e=> {
+                 const percent = e.lengthComputable ? (e.loaded /e.total) * 100 : 0;
+
+                 progressBarFill.style.width= percent.toFixed(2) + "%";
+                 progressBarText.textContent= percent.toFixed(2) + "%";
+             });
+
+             xhr.setRequestHeader("Conetent-type", "multipart/form-data");
+             xhr.send(new FormData(uploadForm));
+
+         }
+          
+     </script>
+
+</body>
+
+ </html>
